@@ -186,6 +186,15 @@ section {
 .delete-btn:hover {
     background: darkred;
 }
+
+#motivationSection {
+    background: rgba(0, 123, 255, 0.8);
+    color: white;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 1.2em;
+}
 /* Dark Mode */
 .dark-mode {
     background-image: url('darkmode.webp');
@@ -270,4 +279,8 @@ section {
 
 .dark-mode .delete-btn:hover {
     background: red;
+}
+.dark-mode #motivationSection {
+    background: rgba(68, 68, 68, 0.8);
+    color: #ffcc00;
 }

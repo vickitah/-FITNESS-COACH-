@@ -185,3 +185,23 @@ document.getElementById("logWorkout").addEventListener("click", () => {
         alert("Please enter a date and workout description.");
     }
 });
+// Motivational Messages List
+const messages = [
+    "Keep pushing! You're stronger than you think. 💪",
+    "Every rep counts! Stay consistent. 🔥",
+    "You're making progress! Keep going! 🚀",
+    "Small progress is still progress. Don't stop! 🏋️",
+    "Believe in yourself. You’ve got this! ✨",
+    "Pain today, strength tomorrow. Keep at it! 💯"
+];
+
+// Function to Show a Random Motivational Message
+function showMotivationalMessage() {
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    const messageDisplay = document.getElementById("motivationalMessage");
+    messageDisplay.textContent = messages[randomIndex];
+}
+
+// Call this function whenever a workout is logged
+document.getElementById("logWorkout").addEventListener("click", showMotivationalMessage);
+
