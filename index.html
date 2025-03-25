@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Coach</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Fitness Coach</h1>
+        <h2>Your Workout Companion</h2>
+    </header>
+    <main>
+        <section id="workout-section">
+            <h2>Personalized Workouts</h2>
+            <input type="text" id="goal" placeholder="Enter your fitness goal">
+            <button onclick="suggestWorkout()">Get Workout Plan</button>
+            <p id="workout-plan"></p>
+        </section>
+        
+        <section id="progress-section">
+            <h2>Progress Tracker</h2>
+            <textarea id="progress-log" placeholder="Log your workout progress..."></textarea>
+            <button onclick="saveProgress()">Save Progress</button>
+            <p id="progress-message"></p>
+        </section>
+        
+        <section id="motivation-section">
+            <h2>Motivational Messages</h2>
+            <p id="motivation"></p>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
