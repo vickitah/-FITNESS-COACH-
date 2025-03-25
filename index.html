@@ -17,20 +17,30 @@
     <main>
         <section id="userProfile">
             <h2>User Profile</h2>
-            <label>Name:</label>
-            <input type="text" id="userName" placeholder="Enter your name" />
-            
-            <label>Age:</label>
-            <input type="number" id="userAge" placeholder="Enter your age" />
         
-            <label>Weight (kg):</label>
-            <input type="number" id="userWeight" placeholder="Enter your weight" />
+            <div class="input-group">
+                <label for="userName">Name:</label>
+                <input type="text" id="userName" placeholder="Enter your name" />
+            </div>
         
-            <label>Fitness Goal:</label>
-            <input type="text" id="userGoal" placeholder="Enter your goal" />
+            <div class="input-group">
+                <label for="userAge">Age:</label>
+                <input type="number" id="userAge" placeholder="Enter your age" />
+            </div>
+        
+            <div class="input-group">
+                <label for="userWeight">Weight (kg):</label>
+                <input type="number" id="userWeight" placeholder="Enter your weight" />
+            </div>
+        
+            <div class="input-group">
+                <label for="userGoal">Fitness Goal:</label>
+                <input type="text" id="userGoal" placeholder="Enter your goal" />
+            </div>
         
             <button id="saveProfile">Save Profile</button>
-            
+            <button id="deleteProfile" class="delete-btn">Delete Profile</button>
+        
             <h3>Profile Summary</h3>
             <p id="profileSummary">Your profile details will appear here.</p>
         </section>

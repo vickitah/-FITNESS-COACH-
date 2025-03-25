@@ -20,6 +20,45 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+document.getElementById("saveProfile").addEventListener("click", () => {
+    const name = document.getElementById("userName").value;
+    const age = document.getElementById("userAge").value;
+    const weight = document.getElementById("userWeight").value;
+    const goal = document.getElementById("userGoal").value;
+
+    if (name && age && weight && goal) {
+        document.getElementById("profileSummary").innerHTML = `
+            <strong>Name:</strong> ${name} <br>
+            <strong>Age:</strong> ${age} <br>
+            <strong>Weight:</strong> ${weight} kg <br>
+            <strong>Goal:</strong> ${goal}
+        `;
+
+        // Optional: Save to localStorage for persistence
+        localStorage.setItem("userProfile", JSON.stringify({ name, age, weight, goal }));
+    } else {
+        alert("Please fill in all fields.");
+    }
+});
+
+// Load saved profile when the page loads
+window.addEventListener("load", () => {
+    const savedProfile = JSON.parse(localStorage.getItem("userProfile"));
+    if (savedProfile) {
+        document.getElementById("userName").value = savedProfile.name;
+        document.getElementById("userAge").value = savedProfile.age;
+        document.getElementById("userWeight").value = savedProfile.weight;
+        document.getElementById("userGoal").value = savedProfile.goal;
+
+        document.getElementById("profileSummary").innerHTML = `
+            <strong>Name:</strong> ${savedProfile.name} <br>
+            <strong>Age:</strong> ${savedProfile.age} <br>
+            <strong>Weight:</strong> ${savedProfile.weight} kg <br>
+            <strong>Goal:</strong> ${savedProfile.goal}
+        `;
+    }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const workoutButton = document.getElementById("getWorkout");
     const workoutPlanDisplay = document.getElementById("workoutPlan");
