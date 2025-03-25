@@ -121,6 +121,39 @@ section {
 .delete-btn:hover {
     background: darkred;
 }
+#progressTracker {
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#workoutList {
+    list-style: none;
+    padding: 0;
+}
+
+#workoutList li {
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.deleteWorkout {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 /* Dark Mode */
 .dark-mode {
     background-image: url('darkmode.webp');
@@ -184,4 +217,14 @@ section {
 }
 .dark-mode #workoutPlan li:hover {
     background: rgba(255, 255, 255, 0.1);
+}
+.dark-mode #progressTracker {
+    background: rgba(68, 68, 68, 0.8);
+}
+.dark-mode #workoutList li {
+    background: rgba(51, 51, 51, 0.9);
+    color: white;
+}
+.deleteWorkout:hover {
+    background: darkred;
 }

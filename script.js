@@ -115,3 +115,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+document.getElementById("logWorkout").addEventListener("click", () => {
+    const date = document.getElementById("workoutDate").value;
+    const desc = document.getElementById("workoutDesc").value;
+    if (date && desc) {
+        const workoutList = document.getElementById("workoutList");
+
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `<strong>${date}:</strong> ${desc} <button class="deleteWorkout">❌</button>`;
+
+        workoutList.appendChild(listItem);
+
+        // Add event listener to delete button
+        listItem.querySelector(".deleteWorkout").addEventListener("click", () => {
+            workoutList.removeChild(listItem);
+        });
+
+        // Clear input fields
+        document.getElementById("workoutDate").value = "";
+        document.getElementById("workoutDesc").value = "";
+    } else {
+        alert("Please enter a date and workout description.");
+    }
+});

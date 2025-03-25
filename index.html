@@ -15,6 +15,27 @@
 
     </header>
     <main>
+        <section id="userProfile">
+            <h2>User Profile</h2>
+            <label>Name:</label>
+            <input type="text" id="userName" placeholder="Enter your name" />
+            
+            <label>Age:</label>
+            <input type="number" id="userAge" placeholder="Enter your age" />
+        
+            <label>Weight (kg):</label>
+            <input type="number" id="userWeight" placeholder="Enter your weight" />
+        
+            <label>Fitness Goal:</label>
+            <input type="text" id="userGoal" placeholder="Enter your goal" />
+        
+            <button id="saveProfile">Save Profile</button>
+            
+            <h3>Profile Summary</h3>
+            <p id="profileSummary">Your profile details will appear here.</p>
+        </section>
+        
+
         <section id="workout-section">
             <h2>Get Your Personalized Workout</h2>
             <label for="fitnessGoal">Enter Your Fitness Goal:</label>
@@ -23,7 +44,7 @@
             <h3>Your Workout Plan:</h3>
             <p id="workoutPlan"></p>
         </section>
-        
+
         <section id="workout">
             <h2>Personalized Workout Plan</h2>
             <button id="customizeWorkout">Customize Workout</button>
@@ -37,24 +58,16 @@
         </section>
         
         
-        <section id="progress-section">
+        <section id="progressTracker">
             <h2>Progress Tracker</h2>
-            <textarea id="progress-log" placeholder="Log your workout progress..."></textarea>
-            <button onclick="saveProgress()">Save Progress</button>
-            <p id="progress-message"></p>
-        </section>  
-        
-        <section id="user-profile">
-            <h2>Welcome to Fitness Coach</h2>
-            <p>Enter your details to get a personalized experience!</p>
-            <input type="text" id="userName" placeholder="Enter your name">
-            <select id="userGoal">
-                <option value="muscle-gain">Muscle Gain</option>
-                <option value="weight-loss">Weight Loss</option>
-                <option value="endurance">Endurance</option>
-            </select>
-            <button onclick="saveUserProfile()">Save</button>
+            <input type="date" id="workoutDate" />
+            <input type="text" id="workoutDesc" placeholder="Workout description (e.g., 20 push-ups)" />
+            <button id="logWorkout">Log Workout</button>
+            <ul id="workoutList"></ul>
         </section>
+        
+        
+        
 
         <section id="motivation-section">
             <h2>Motivational Messages</h2>
