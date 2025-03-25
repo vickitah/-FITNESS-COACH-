@@ -263,3 +263,11 @@ section {
 .dark-mode .input-group label {
     color: silver; /* Make labels visible */
 }
+.dark-mode .delete-btn {
+    background: darkred;
+    color: white;
+}
+
+.dark-mode .delete-btn:hover {
+    background: red;
+}

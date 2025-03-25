@@ -20,6 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+document.getElementById("deleteProfile").addEventListener("click", function () {
+    document.getElementById("userName").value = "";
+    document.getElementById("userAge").value = "";
+    document.getElementById("userWeight").value = "";
+    document.getElementById("userGoal").value = "";
+    document.getElementById("profileSummary").textContent = "Your profile details will appear here.";
+});
+
 document.getElementById("saveProfile").addEventListener("click", () => {
     const name = document.getElementById("userName").value;
     const age = document.getElementById("userAge").value;
