@@ -25,12 +25,25 @@
             <textarea id="progress-log" placeholder="Log your workout progress..."></textarea>
             <button onclick="saveProgress()">Save Progress</button>
             <p id="progress-message"></p>
+        </section>  
+        
+        <section id="user-profile">
+            <h2>Welcome to Fitness Coach</h2>
+            <p>Enter your details to get a personalized experience!</p>
+            <input type="text" id="userName" placeholder="Enter your name">
+            <select id="userGoal">
+                <option value="muscle-gain">Muscle Gain</option>
+                <option value="weight-loss">Weight Loss</option>
+                <option value="endurance">Endurance</option>
+            </select>
+            <button onclick="saveUserProfile()">Save</button>
         </section>
         
         <section id="motivation-section">
             <h2>Motivational Messages</h2>
             <p id="motivation"></p>
         </section>
+        
     </main>
     <script src="script.js"></script>
 </body>
