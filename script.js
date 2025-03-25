@@ -20,3 +20,98 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const workoutButton = document.getElementById("getWorkout");
+    const workoutPlanDisplay = document.getElementById("workoutPlan");
+
+    workoutButton.addEventListener("click", () => {
+        const fitnessGoal = document.getElementById("fitnessGoal").value.trim().toLowerCase();
+        let workoutPlan = "";
+
+        if (fitnessGoal.includes("muscle") || fitnessGoal.includes("strength")) {
+            workoutPlan = `
+                <ol>
+                    <li>💪 Push-ups - <strong>3 sets of 15 reps</strong></li>
+                    <li>🏋️ Squats - <strong>3 sets of 20 reps</strong></li>
+                    <li>🏋️ Deadlifts - <strong>3 sets of 10 reps</strong></li>
+                    <li>🏋️ Bench Press - <strong>3 sets of 12 reps</strong></li>
+                    <li>🧗 Pull-ups - <strong>3 sets of 8 reps</strong></li>
+                </ol>
+            `;
+        } else if (fitnessGoal.includes("weight") || fitnessGoal.includes("fat") || fitnessGoal.includes("lose")) {
+            workoutPlan = `
+                <ol>
+                    <li>🔥 Jump Rope - <strong>5 minutes</strong></li>
+                    <li>🏃‍♂️ Running - <strong>20 minutes</strong></li>
+                    <li>💥 Burpees - <strong>3 sets of 12 reps</strong></li>
+                    <li>🚴‍♂️ Cycling - <strong>30 minutes</strong></li>
+                    <li>🦵 Mountain Climbers - <strong>3 sets of 20 reps</strong></li>
+                </ol>
+            `;
+        } else if (fitnessGoal.includes("stamina") || fitnessGoal.includes("endurance")) {
+            workoutPlan = `
+                <ol>
+                    <li>🏃‍♂️ Long-distance Running - <strong>40 minutes</strong></li>
+                    <li>🚴‍♂️ Cycling - <strong>30 minutes</strong></li>
+                    <li>🏊‍♂️ Swimming - <strong>20 laps</strong></li>
+                    <li>💪 Rowing Machine - <strong>15 minutes</strong></li>
+                </ol>
+            `;
+        } else if (fitnessGoal.includes("flexibility") || fitnessGoal.includes("mobility")) {
+            workoutPlan = `
+                <ol>
+                    <li>🧘‍♂️ Yoga Stretches - <strong>15 minutes</strong></li>
+                    <li>🤸‍♂️ Dynamic Stretching - <strong>10 minutes</strong></li>
+                    <li>🏋️ Resistance Band Mobility - <strong>3 sets of 15 reps</strong></li>
+                    <li>🦵 Hip Openers - <strong>10 minutes</strong></li>
+                </ol>
+            `;
+        } else {
+            workoutPlan = "<p>🤔 Please enter a valid fitness goal (e.g., 'Build muscle', 'Lose weight' ).</p>";
+        }
+
+        workoutPlanDisplay.innerHTML = workoutPlan;
+    });
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const workoutList = document.getElementById("workoutPlan");
+    const customizeBtn = document.getElementById("customizeWorkout");
+
+    // Workout Details Data
+    const workoutDetails = {
+        "Push-ups": "Do 3 sets of 15 reps. Focus on full range of motion.",
+        "Squats": "Perform 3 sets of 20 reps. Keep your back straight!",
+        "Plank": "Hold for 30-60 seconds. Engages core muscles.",
+        "Lunges": "12 reps per leg. Helps build leg strength.",
+        "Dips": "3 sets of 12 reps. Targets triceps and shoulders."
+    };
+
+    // Make workouts clickable
+    workoutList.addEventListener("click", (event) => {
+        if (event.target.tagName === "LI") {
+            const exerciseName = event.target.innerText.split(" - ")[0]; 
+            alert(workoutDetails[exerciseName] || "More details coming soon!");
+        }
+    });
+
+    // Enable Workout Customization
+    customizeBtn.addEventListener("click", () => {
+        let newPlan = prompt("Enter your custom workout plan (separate exercises with commas):");
+        if (newPlan) {
+            let exercises = newPlan.split(",").map(ex => ex.trim());
+            workoutList.innerHTML = "";
+            exercises.forEach(ex => {
+                let li = document.createElement("li");
+                li.innerHTML = `${ex} - Click for details <button class="delete-btn">❌</button>`;
+                workoutList.appendChild(li);
+            });
+        }
+    });
+
+    // Delete an Exercise
+    workoutList.addEventListener("click", (event) => {
+        if (event.target.classList.contains("delete-btn")) {
+            event.target.parentElement.remove(); // Remove the clicked exercise
+        }
+    });
+});

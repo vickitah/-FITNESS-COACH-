@@ -16,11 +16,26 @@
     </header>
     <main>
         <section id="workout-section">
-            <h2>Personalized Workouts</h2>
-            <input type="text" id="goal" placeholder="Enter your fitness goal">
-            <button onclick="suggestWorkout()">Get Workout Plan</button>
-            <p id="workout-plan"></p>
+            <h2>Get Your Personalized Workout</h2>
+            <label for="fitnessGoal">Enter Your Fitness Goal:</label>
+            <input type="text" id="fitnessGoal" placeholder="E.g., Build muscle, Lose weight">
+            <button id="getWorkout">Get Workout Plan</button>
+            <h3>Your Workout Plan:</h3>
+            <p id="workoutPlan"></p>
         </section>
+        
+        <section id="workout">
+            <h2>Personalized Workout Plan</h2>
+            <button id="customizeWorkout">Customize Workout</button>
+            <ol id="workoutPlan">
+                <li>Push-ups - Click for details</li>
+                <li>Squats - Click for details</li>
+                <li>Plank - Click for details</li>
+                <li>Lunges - Click for details</li>
+                <li>Dips - Click for details</li>
+            </ol>
+        </section>
+        
         
         <section id="progress-section">
             <h2>Progress Tracker</h2>
