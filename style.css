@@ -17,17 +17,33 @@ header {
     color: white;
     padding: 20px;
     border-radius: 0 0 10px 10px;
+    min-height: 250px;
 }
 
-h1 {
-    font-size: 2em;
-    margin: 0;
+header h1 {
+    font-size: 6rem; 
+    font-style: italic;
 }
 
-h2 {
-    font-size: 1.5em;
-    margin-top: 5px;
+header p {
+    font-size: 2rem;
+    font-style: italic; 
 }
+section {
+    max-width: 800px; /* Adjust width */
+    width: 190%;
+    margin: 50px auto; /* Centers the section */
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Slight background */
+    border-radius: 10px; /* Soft edges */
+    text-align: center;
+}
+
+section h2 {
+    font-size: 2.5rem; /* Larger heading */
+    font-weight: bold;
+}
+
 
 button {
     background: #007bff;
@@ -69,6 +85,17 @@ section {
     max-width: 400px;
     margin: 20px auto;
     text-align: center;
+}
+
+#profileSummary {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 300px;
+    padding: 15px;
+    color: black; /* Dark text for light mode */
+    background-color: white; /* Light background */
+    padding: 10px;
+    border-radius: 5px;
 }
 
 #user-profile input, #user-profile select {
@@ -195,7 +222,24 @@ section {
     border-radius: 10px;
     font-size: 1.2em;
 }
+@keyframes glow {
+    0% { text-shadow: 0 0 5px lime; }
+    50% { text-shadow: 0 0 15px lime; }
+    100% { text-shadow: 0 0 5px lime; }
+}
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
 /* Dark Mode */
+
 .dark-mode {
     background-image: url('darkmode.webp');
     background-position: center center;
@@ -218,6 +262,14 @@ section {
     color: #c0c0c0; 
 }
 
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+body.dark-mode p {
+    color: white;
+}
 
 .dark-mode button {
     background: #ffcc00;
@@ -235,6 +287,14 @@ section {
 .dark-mode #user-profile {
     background: rgba(51, 51, 51, 0.9);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode #profileSummary {
+    color: white !important; /* Light text for dark mode */
+    background-color: #222 !important; /* Dark background */
+    border: 1px solid #444; /* Slight border for visibility */
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .dark-mode #user-profile button {
@@ -283,4 +343,17 @@ section {
 .dark-mode #motivationSection {
     background: rgba(68, 68, 68, 0.8);
     color: #ffcc00;
+}
+.dark-mode #motivationalMessage {
+    color: #00ff00; /* Bright green for better contrast */
+    text-shadow: 0 0 10px lime, 0 0 20px lime;
+}
+
+.dark-mode #workoutList li {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background */
+    color: white; /* Ensure text is readable */
+    border-left: 4px solid lime; /* Nice highlight */
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
 }

@@ -162,30 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-document.getElementById("logWorkout").addEventListener("click", () => {
-    const date = document.getElementById("workoutDate").value;
-    const desc = document.getElementById("workoutDesc").value;
-    if (date && desc) {
-        const workoutList = document.getElementById("workoutList");
 
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `<strong>${date}:</strong> ${desc} <button class="deleteWorkout">❌</button>`;
-
-        workoutList.appendChild(listItem);
-
-        // Add event listener to delete button
-        listItem.querySelector(".deleteWorkout").addEventListener("click", () => {
-            workoutList.removeChild(listItem);
-        });
-
-        // Clear input fields
-        document.getElementById("workoutDate").value = "";
-        document.getElementById("workoutDesc").value = "";
-    } else {
-        alert("Please enter a date and workout description.");
-    }
-});
-// Motivational Messages List
 const messages = [
     "Keep pushing! You're stronger than you think. 💪",
     "Every rep counts! Stay consistent. 🔥",
@@ -198,10 +175,100 @@ const messages = [
 // Function to Show a Random Motivational Message
 function showMotivationalMessage() {
     const randomIndex = Math.floor(Math.random() * messages.length);
-    const messageDisplay = document.getElementById("motivationalMessage");
-    messageDisplay.textContent = messages[randomIndex];
+    document.getElementById("motivationalMessage").textContent = messages[randomIndex];
 }
 
-// Call this function whenever a workout is logged
-document.getElementById("logWorkout").addEventListener("click", showMotivationalMessage);
+// Function to Display Workouts
+function displayWorkouts() {
+    const workoutList = document.getElementById("workoutList");
+    workoutList.innerHTML = ""; // Clear list before displaying
 
+    let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+
+    workouts.forEach((workout, index) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `<strong>${workout.date}:</strong> ${workout.desc} 
+                              <button class="deleteWorkout" data-index="${index}">❌</button>`;
+
+        // Add fade-in animation
+        listItem.style.opacity = "0";
+        workoutList.appendChild(listItem);
+        setTimeout(() => {
+            listItem.style.opacity = "1";
+            listItem.style.transition = "opacity 0.5s ease-in-out";
+        }, 100);
+
+        // Delete button functionality
+        listItem.querySelector(".deleteWorkout").addEventListener("click", () => {
+            workouts.splice(index, 1); // Remove the clicked workout
+            localStorage.setItem("workouts", JSON.stringify(workouts));
+            displayWorkouts(); // Refresh the list
+        });
+    });
+}
+
+// Save Workout and Show Animation
+document.getElementById("saveWorkout").addEventListener("click", () => {
+    const date = document.getElementById("workoutDate").value.trim();
+    const desc = document.getElementById("workoutDesc").value.trim();
+    const messageDisplay = document.getElementById("motivationalMessage");
+
+    if (date && desc) {
+        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        workouts.push({ date, desc });
+        localStorage.setItem("workouts", JSON.stringify(workouts));
+
+        displayWorkouts(); // Refresh the list
+        showMotivationalMessage(); // Show a new motivational message
+
+        // **Add green glow effect for confirmation**
+        messageDisplay.textContent = "Workout saved! Keep going! 💪";
+        messageDisplay.style.color = "green";
+        messageDisplay.style.transition = "color 0.5s ease-in-out";
+        messageDisplay.style.animation = "glow 1s ease-in-out"; // Glow effect
+
+        // Reset color after 2 seconds
+        setTimeout(() => {
+            messageDisplay.style.color = "";
+        }, 2000);
+
+        // Clear input fields
+        document.getElementById("workoutDate").value = "";
+        document.getElementById("workoutDesc").value = "";
+    } else {
+        alert("Please enter a date and workout description.");
+    }
+});
+function showConfetti() {
+    confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 },
+    });
+}
+
+function animateSuccess() {
+    const message = document.getElementById("motivationalMessage");
+    message.style.animation = "glow 1s ease-in-out 2"; // Green glow effect
+}
+
+function shakeButton() {
+    const button = document.getElementById("saveWorkout");
+    button.classList.add("shake");
+
+    // Remove the shake class after animation ends
+    setTimeout(() => {
+        button.classList.remove("shake");
+    }, 1000);
+}
+
+// Updated event listener to trigger all effects
+document.getElementById("saveWorkout").addEventListener("click", () => {
+    animateSuccess(); // Green glow effect
+    showConfetti();   // Confetti explosion
+    shakeButton();    // Button shake effect
+});
+
+
+// Load saved workouts on page load
+displayWorkouts();

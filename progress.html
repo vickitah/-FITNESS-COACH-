@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1><em>Fitness Coach</em></h1>
+        <p><em>Your Workout Companion</em></p>
+        <button id="dark-mode-toggle">Dark Mode</button>       
+    </header>
+    <main>
+        <section id="user-profile">
+            <h2>User Profile</h2>
+            <form id="user-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+                
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+                
+                <label for="goal">Fitness Goal:</label>
+                <input type="text" id="goal" name="goal" required>
+                
+                <button type="submit">Save Profile</button>
+            </form>
+            
+            <section id="profile-summary" style="display: none;">
+                <h3>Profile Summary</h3>
+                <p><strong>Name:</strong> <span id="summary-name"></span></p>
+                <p><strong>Age:</strong> <span id="summary-age"></span></p>
+                <p><strong>Weight:</strong> <span id="summary-weight"></span> kg</p>
+                <p><strong>Fitness Goal:</strong> <span id="summary-goal"></span></p>
+                <button id="delete-profile">Delete Profile</button>
+            </section>
+        </section>
+        
+        <section id="suggested-workouts">
+            <h2>Suggested Workouts</h2>
+            <p>Personalized workout routines based on your fitness goal.</p>
+            <ul id="workout-list">
+                <!-- Workout suggestions will be dynamically added here -->
+            </ul>
+            <button id="customizeWorkout">Customize Workout</button>
+        </section>
+
+        <section id="progress-tracking">
+            <h2>Progress Tracking</h2>
+            <p>Log your completed workouts and track your improvements over time.</p>
+            <textarea id="progress-log" placeholder="Log your progress here..."></textarea>
+            <button id="save-progress">Save Progress</button>
+            <ul id="progress-list"></ul>
+        </section>
+
+        <section id="motivation">
+            <h2>Motivation</h2>
+            <p>Stay motivated with daily workout tips and encouragement.</p>
+            <blockquote id="motivational-quote">"Push yourself because no one else is going to do it for you."</blockquote>
+            <button id="new-quote">New Motivation</button>
+        </section>
+    </main>
+    <script src="progress.js"></script>
+</body>
+</html>
