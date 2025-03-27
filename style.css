@@ -1,274 +1,186 @@
+/* Default styles for all pages */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background-image: url('fitness-bg.webp');
-    background-position: center center;
-    background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
-    color: #333;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-header {
-    background: rgba(0, 123, 255, 0.8);
-    color: white;
-    padding: 20px;
-    border-radius: 0 0 10px 10px;
-    min-height: 250px;
-}
-
-header h1 {
-    font-size: 6rem; 
-    font-style: italic;
-}
-
-header p {
-    font-size: 2rem;
-    font-style: italic; 
-}
-section {
-    max-width: 800px; /* Adjust width */
-    width: 190%;
-    margin: 50px auto; /* Centers the section */
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.8); /* Optional: Slight background */
-    border-radius: 10px; /* Soft edges */
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Keeps everything aligned from the top */
+    min-height: 100vh; /* Ensures full height */
     text-align: center;
+} 
+.index-page {
+    background-image: url('lightmode.webp'); /* Replace with your actual image path */
 }
-
-section h2 {
-    font-size: 2.5rem; /* Larger heading */
-    font-weight: bold;
-}
-
-
-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s;
+.progress-page {
+    background-image: url('lightfit.webp'); /* Replace with your actual image path */
 }
 
 button:hover {
-    background: #0056b3;
+    background-color: #e64a19;
+}
+
+    
+section {
+    width: 90%; /* Keeps content from stretching too much */
+    max-width: 600px; /* Limits the width for better readability */
+    margin: 20px auto; /* Centers sections horizontally */
+    }
+    
+    
+
+
+header {
+    width: 100%; /* Ensures it spans the full width */
+    background-color: #007bff; /* Adjust to match your theme */
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    }
+    
+
+
+header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+header p {
+    font-size: 1.3rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 input, textarea {
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-section {
-    background: rgba(255, 255, 255, 0.9);
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-}
-
-#user-profile {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 20px auto;
-    text-align: center;
-}
-
-#profileSummary {
-    text-align: center;
-    margin: 20px auto;
-    max-width: 300px;
-    padding: 15px;
-    color: black; /* Dark text for light mode */
-    background-color: white; /* Light background */
-    padding: 10px;
-    border-radius: 5px;
-}
-
-#user-profile input, #user-profile select {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#user-profile button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-#user-profile button:hover {
-    background: #0056b3;
-}
-
-
-#workoutPlan li {
-    cursor: pointer;
+    width: 50%;
+    max-width: 350px;
     padding: 8px;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#workoutPlan li:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-.delete-btn {
-    background: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 0.8em;
-}
-
-.delete-btn:hover {
-    background: darkred;
-}
-#progressTracker {
-    background: rgba(255, 255, 255, 0.9);
-    color: black;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px auto;
-    max-width: 500px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-#workoutList {
-    list-style: none;
-    padding: 0;
-}
-
-#workoutList li {
-    background: rgba(255, 255, 255, 0.9);
-    color: black;
-    padding: 10px;
     margin: 5px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.deleteWorkout {
-    background: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
+    text-align: center;
 }
 
-.input-group {
+button {
+    width: 50%;
+    max-width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+.form-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
-}
-
-.input-group label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.input-group input {
+    align-items: center;
     width: 100%;
-    padding: 8px;
+}
+
+input, textarea, button {
+    width: 50%;
+    max-width: 350px;
+    padding: 10px;
+    margin: 8px 0;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+button {
+    background-color: #1026a3;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#workout-list {
+    list-style: none;
+    padding: 15px;
+    margin: 20px auto;
+    border: 2px solid #0066cc;
+    border-radius: 12px;
+    background-color: #f1f1f1;
+    max-width: 450px;
+}
+
+#workout-list li {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    background: white;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .delete-btn {
-    background: red;
+    background: #cc0000;
     color: white;
     border: none;
-    padding: 10px;
-    font-size: 1em;
+    padding: 8px 15px;
     cursor: pointer;
-    border-radius: 5px;
-    margin-left: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
 }
 
 .delete-btn:hover {
-    background: darkred;
+    background: #990000;
 }
-
-#motivationSection {
-    background: rgba(0, 123, 255, 0.8);
-    color: white;
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 10px;
-    font-size: 1.2em;
-}
-@keyframes glow {
-    0% { text-shadow: 0 0 5px lime; }
-    50% { text-shadow: 0 0 15px lime; }
-    100% { text-shadow: 0 0 5px lime; }
-}
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-}
-
-.shake {
-    animation: shake 0.5s ease-in-out;
-}
-
-/* Dark Mode */
 
 .dark-mode {
     background-image: url('darkmode.webp');
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-color: #222;
-    
+    background-color: #181818;
+    color: white;
 }
+body.progress-page.dark-mode {
+    background-image: url("darkfit.webp");
+}
+body.index-page.dark-mode{
+    background-image: url("darkmode.webp")
+
+}
+
 .dark-mode header {
-    background: black; 
+    background: black;
 }
 
-
-.dark-mode h2, 
-.dark-mode h3, 
-.dark-mode h4, 
-.dark-mode h5, 
-.dark-mode h6 {
-    color: #c0c0c0; 
-}
-
-body.dark-mode {
-    background-color: #121212;
-    color: white;
-}
-
-body.dark-mode p {
-    color: white;
+.dark-mode section {
+    background: rgba(40, 40, 40, 0.9);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
 }
 
 .dark-mode button {
@@ -280,80 +192,20 @@ body.dark-mode p {
     background: #e6b800;
 }
 
-.dark-mode section {
-    background: rgba(51, 51, 51, 0.9);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-.dark-mode #user-profile {
-    background: rgba(51, 51, 51, 0.9);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+.dark-mode #workout-list {
+    background-color: #333;
+    border-color: #666;
 }
 
-.dark-mode #profileSummary {
-    color: white !important; /* Light text for dark mode */
-    background-color: #222 !important; /* Dark background */
-    border: 1px solid #444; /* Slight border for visibility */
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.dark-mode #user-profile button {
-    background: #ffcc00;
-    color: black;
-}
-
-.dark-mode #user-profile button:hover {
-    background: #e6b800;
-}
-.dark-mode #workoutPlan {
-    background: rgba(51, 51, 51, 0.9);  /* Dark gray background */
-    color: white;  /* Light text */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode ol li {
-    color: white; /* Ensure list items are visible */
-}
-.dark-mode #workoutPlan li:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-.dark-mode #progressTracker {
-    background: rgba(68, 68, 68, 0.8);
-}
-.dark-mode #workoutList li {
-    background: rgba(51, 51, 51, 0.9);
+.dark-mode #workout-list li {
+    background: #444;
     color: white;
 }
-.deleteWorkout:hover {
-    background: darkred;
-}
-.dark-mode .input-group label {
-    color: silver; /* Make labels visible */
-}
+
 .dark-mode .delete-btn {
     background: darkred;
-    color: white;
 }
 
 .dark-mode .delete-btn:hover {
     background: red;
-}
-.dark-mode #motivationSection {
-    background: rgba(68, 68, 68, 0.8);
-    color: #ffcc00;
-}
-.dark-mode #motivationalMessage {
-    color: #00ff00; /* Bright green for better contrast */
-    text-shadow: 0 0 10px lime, 0 0 20px lime;
-}
-
-.dark-mode #workoutList li {
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background */
-    color: white; /* Ensure text is readable */
-    border-left: 4px solid lime; /* Nice highlight */
-    padding: 5px;
-    margin-bottom: 5px;
-    border-radius: 5px;
 }
