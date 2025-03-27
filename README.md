@@ -1,6 +1,6 @@
 #  Fitness Coach - Your Workout Companion
 
-**Live Demo:** [Add Deployed Link Here]
+**Live Demo:**  https://vickitah.github.io/-FITNESS-COACH-/
 
 ##  Description
 
@@ -36,7 +36,7 @@ Fitness Coach is a web app that helps users track the number of workouts they do
 
 ## 📼 Deployment
 
-The project is deployed at: **[Add Deployed Link Here]**
+The project is deployed at:  https://vickitah.github.io/-FITNESS-COACH-/
 
 ## 🐟 License
 
