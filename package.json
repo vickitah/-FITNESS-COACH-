@@ -4,8 +4,9 @@
   "description": "**Live Demo:**  https://vickitah.github.io/-FITNESS-COACH-/",
   "main": "index.js",
   "scripts": {
-  "start": "json-server --watch db.json --port 3001"
-},
+  "start": "npx json-server --watch db.json --port 3001"
+
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vickitah/-FITNESS-COACH-.git"
