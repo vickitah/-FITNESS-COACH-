@@ -8,18 +8,47 @@ document.addEventListener("DOMContentLoaded", function () {
     const workoutList = document.getElementById("workout-list");
     const deleteProgressBtn = document.getElementById("delete-progress");
 
+    document.addEventListener("DOMContentLoaded", async () => {
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+        const body = document.body;
     
-    if (localStorage.getItem("darkMode") === "enabled") {
-        document.body.classList.add("dark-mode");
-        darkModeToggle.textContent = "Light Mode";
-    }
-
-    darkModeToggle.addEventListener("click", function () {
-        document.body.classList.toggle("dark-mode");
-        const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
-        localStorage.setItem("darkMode", mode);
-        darkModeToggle.textContent = mode === "enabled" ? "Light Mode" : "Dark Mode";
+        // Fetch dark mode setting from db.json
+        try {
+            const response = await fetch("http://localhost:3000/settings");
+            const data = await response.json();
+            
+            if (data.darkMode === "enabled") {
+                body.classList.add("dark-mode");
+                darkModeToggle.textContent = "Light Mode";
+            } else {
+                body.classList.remove("dark-mode");
+                darkModeToggle.textContent = "Dark Mode";
+            }
+        } catch (error) {
+            console.error("Error fetching dark mode setting:", error);
+        }
+    
+        // Toggle dark mode
+        darkModeToggle.addEventListener("click", async () => {
+            const isDarkMode = body.classList.toggle("dark-mode");
+            const mode = isDarkMode ? "enabled" : "disabled";
+            darkModeToggle.textContent = isDarkMode ? "Light Mode" : "Dark Mode";
+    
+            // Update db.json with the new mode
+            try {
+                await fetch("http://localhost:3000/settings", {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ darkMode: mode })
+                });
+            } catch (error) {
+                console.error("Error updating dark mode setting:", error);
+            }
+        });
     });
+    
 
     
     userForm.addEventListener("submit", function (event) {
@@ -104,95 +133,101 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     
-    function displayWorkouts() {
+    async function displayWorkouts() {
         const workoutList = document.getElementById("workoutList");
-        workoutList.innerHTML = ""; 
+        workoutList.innerHTML = "";
     
-        let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
+        try {
+            const response = await fetch("http://localhost:3000/workouts");
+            let workouts = await response.json();
     
-        workouts.forEach((workout, index) => {
-            const listItem = document.createElement("li");
-            listItem.innerHTML = `<strong>${workout.date}:</strong> ${workout.desc} 
-                                  <button class="deleteWorkout" data-index="${index}">❌</button>`;
+            workouts.forEach((workout) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<strong>${workout.date}:</strong> ${workout.desc} 
+                                      <button class="deleteWorkout" data-id="${workout.id}">❌</button>`;
     
-            
-            listItem.style.opacity = "0";
-            workoutList.appendChild(listItem);
-            setTimeout(() => {
-                listItem.style.opacity = "1";
-                listItem.style.transition = "opacity 0.5s ease-in-out";
-            }, 100);
+                listItem.style.opacity = "0";
+                workoutList.appendChild(listItem);
+                setTimeout(() => {
+                    listItem.style.opacity = "1";
+                    listItem.style.transition = "opacity 0.5s ease-in-out";
+                }, 100);
     
-           
-            listItem.querySelector(".deleteWorkout").addEventListener("click", () => {
-                workouts.splice(index, 1); 
-                localStorage.setItem("workouts", JSON.stringify(workouts));
-                displayWorkouts(); 
+                // Delete workout
+                listItem.querySelector(".deleteWorkout").addEventListener("click", async () => {
+                    await fetch(`http://localhost:3000/workouts/${workout.id}`, {
+                        method: "DELETE"
+                    });
+                    displayWorkouts();
+                });
             });
-        });
+        } catch (error) {
+            console.error("Error fetching workouts:", error);
+        }
     }
     
+    async function addWorkout(date, desc) {
+        try {
+            await fetch("http://localhost:3000/workouts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ date, desc })
+            });
+            displayWorkouts();
+        } catch (error) {
+            console.error("Error adding workout:", error);
+        }
+    }
     
-    document.getElementById("saveWorkout").addEventListener("click", () => {
+    document.getElementById("saveWorkout").addEventListener("click", async () => {
         const date = document.getElementById("workoutDate").value.trim();
         const desc = document.getElementById("workoutDesc").value.trim();
         const messageDisplay = document.getElementById("motivationalMessage");
     
         if (date && desc) {
-            let workouts = JSON.parse(localStorage.getItem("workouts")) || [];
-            workouts.push({ date, desc });
-            localStorage.setItem("workouts", JSON.stringify(workouts));
+            try {
+                // Send a POST request to add workout to db.json
+                await fetch("http://localhost:3000/workouts", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ date, desc })
+                });
     
-            displayWorkouts(); 
-            showMotivationalMessage(); 
+                displayWorkouts(); // Refresh the workout list
+                showMotivationalMessage(); // Show motivation message
     
-            
-            messageDisplay.textContent = "Workout saved! Keep going! 💪";
-            messageDisplay.style.color = "green";
-            messageDisplay.style.transition = "color 0.5s ease-in-out";
-            messageDisplay.style.animation = "glow 1s ease-in-out"; 
-            
-            setTimeout(() => {
-                messageDisplay.style.color = "";
-            }, 2000);
+                // Success message
+                messageDisplay.textContent = "Workout saved! Keep going! 💪";
+                messageDisplay.style.color = "green";
+                messageDisplay.style.transition = "color 0.5s ease-in-out";
+                messageDisplay.style.animation = "glow 1s ease-in-out";
     
-            
-            document.getElementById("workoutDate").value = "";
-            document.getElementById("workoutDesc").value = "";
+                setTimeout(() => {
+                    messageDisplay.style.color = "";
+                }, 2000);
+    
+                // Clear input fields
+                document.getElementById("workoutDate").value = "";
+                document.getElementById("workoutDesc").value = "";
+    
+                // Trigger animations
+                animateSuccess();
+                showConfetti();
+                shakeButton();
+    
+            } catch (error) {
+                console.error("Error saving workout:", error);
+                alert("Failed to save workout. Please try again.");
+            }
         } else {
             alert("Please enter a date and workout description.");
         }
     });
     
-    function showConfetti() {
-        confetti({
-            particleCount: 200,
-            spread: 100,
-            origin: { y: 0.6 },
-        });
-    }
-    
-    function animateSuccess() {
-        const message = document.getElementById("motivationalMessage");
-        message.style.animation = "glow 1s ease-in-out 2"; 
-    }
-    
-    function shakeButton() {
-        const button = document.getElementById("saveWorkout");
-        button.classList.add("shake");
-     
-        setTimeout(() => {
-            button.classList.remove("shake");
-        }, 1000);
-    }
-    
-   
-    document.getElementById("saveWorkout").addEventListener("click", () => {
-        animateSuccess(); 
-        showConfetti();   
-        shakeButton();    
-    });
-    
-   
+    // Load workouts when page loads
     document.addEventListener("DOMContentLoaded", displayWorkouts);
-})
+})    
