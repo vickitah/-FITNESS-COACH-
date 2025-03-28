@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Fitness Coach Loaded!");
   
 
-    // Example: Personalized Greeting
+    
     const userName = prompt("Enter your name:");
     if (userName) {
         document.querySelector("h2").textContent = `Welcome, ${userName}! Ready to start your workout?`;
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const darkModeToggle = document.getElementById("dark-mode-toggle");
 const body = document.body;
 
-// Check if dark mode is saved in local storage
+
 if (localStorage.getItem("darkMode") === "enabled") {
     body.classList.add("dark-mode");
     darkModeToggle.textContent = "Light Mode";

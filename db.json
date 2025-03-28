@@ -1,0 +1,27 @@
+{
+  "workouts": [
+    {
+      "id": "1",
+      "name": "Push-ups",
+      "reps": 20
+    },
+    {
+      "id": "2",
+      "name": "Squats",
+      "reps": 15
+    },
+    {
+      "id": "236f",
+      "date": "2025-03-13",
+      "desc": "34 pus ups"
+    }
+  ],
+  "progress": [
+    {
+      "id": "1",
+      "date": "2025-03-27",
+      "workout": "Push-ups",
+      "completed": true
+    }
+  ]
+}
