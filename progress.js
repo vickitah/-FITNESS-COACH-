@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Delete workout
                 listItem.querySelector(".deleteWorkout").addEventListener("click", async () => {
-                    await fetch(`http://localhost:3000/workouts/${workout.id}`, {
+                    await fetch(`http://localhost:4000/workouts/${workout.id}`, {
                         method: "DELETE"
                     });
                     displayWorkouts(); // Refresh the workout list
